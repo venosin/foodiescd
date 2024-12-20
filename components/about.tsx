@@ -3,39 +3,43 @@ import Link from "next/link";
 
 export function About() {
   return (
-    <section className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative h-[400px] lg:h-[600px]">
+    <section id="about" className="py-32 bg-white relative">
+      <div className="max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="relative w-full">
             <Image
               src="/Group22.png"
               alt="Nuestro equipo trabajando"
-              fill
-              className="object-cover rounded-lg"
+              layout="intrinsic"
+              width={1200}
+              height={800}
+              className="object-cover object-center"
             />
-
-            <h2 className="absolute bottom-4 right-4 text-2xl lg:text-4xl font-druk font-bold text-white px-4 py-2 rounded-md">
-              LA COMIDA ES <br />
-              <span className="inline-block bg-yellow-400 px-2">
+            {/* Texto completamente en la esquina inferior derecha */}
+            <div className="absolute text-3xl lg:text-5xl font-druk font-bold text-white px-6 pt-15 bottom-6 left-20">
+              <h2 className="bottom-6 left-20 ">
+                LA COMIDA ES <br />
+              </h2>
+              <span className=" truncate inline-block text-yellow-400">
                 NUESTRO ARTE
               </span>
-            </h2>
+            </div>
           </div>
-          <div className="space-y-6">
-            <h1 className="font-syneBold text-black font-medium">
+          <div className="space-y-8">
+            <h1 className="font-syneBold text-xl lg:text-xl text-black font-medium">
               ¿Quién es Foodies?
             </h1>
-            <p className="text-gray-600">
+            <p className="text-lg lg:text-lg text-gray-600 leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <Link
               href="#contacto"
-              className="font-syneBold inline-flex items-center text-black font-medium hover:underline"
+              className="font-syneBold inline-flex items-center lg:text-xl text-black font-medium hover:underline"
             >
               Contáctanos
               <svg
-                className="ml-2 w-5 h-5"
+                className="ml-2 w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

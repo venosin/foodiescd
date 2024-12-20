@@ -12,16 +12,16 @@ export function Nav() {
           </Link>
           {/* Enlaces de navegación */}
           <div className="hidden md:flex space-x-8 ml-16">
-            <Link href="#" className="font-syneBold">
+            <Link href="#about" className="font-syneBold">
               Acerca de
             </Link>
-            <Link href="#" className="font-syneBold">
+            <Link href="#encuentranos" className="font-syneBold">
               Restaurantes
             </Link>
-            <Link href="#" className="font-syneBold">
+            <Link href="/menu" className="font-syneBold">
               Menú
             </Link>
-            <Link href="#" className="font-syneBold">
+            <Link href="#contacto" className="font-syneBold">
               Contáctanos
             </Link>
           </div>

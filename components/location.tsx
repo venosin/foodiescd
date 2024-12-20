@@ -1,7 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
+// Configuración del ícono de Leaflet
+import MarkerIcon from "leaflet/dist/images/marker-icon.png";
+import MarkerShadow from "leaflet/dist/images/marker-shadow.png";
+
+const customIcon = new L.Icon({
+  iconUrl: MarkerIcon,
+  shadowUrl: MarkerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12.5, 41],
+});
 
 export function Location() {
   const [deliveryType, setDeliveryType] = useState<"pickup" | "delivery">(
@@ -15,6 +28,7 @@ export function Location() {
           Estamos para ti
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Botones para seleccionar tipo de entrega */}
           <div className="space-y-6">
             <div className="flex rounded-lg overflow-hidden">
               <button
@@ -38,6 +52,8 @@ export function Location() {
                 Domicilio
               </button>
             </div>
+
+            {/* Información de la sucursal */}
             <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
               <h3 className="font-bold">Sucursal San Benito</h3>
               <p className="text-gray-600">
@@ -47,13 +63,30 @@ export function Location() {
               </p>
             </div>
           </div>
+
+          {/* Mapa interactivo */}
           <div className="relative h-[400px] rounded-lg overflow-hidden">
-            <Image
-              src="/map.png"
-              alt="Mapa de ubicación"
-              fill
-              className="object-cover"
-            />
+            <MapContainer
+              style={{ height: "100%", width: "100%" }}
+              center={[13.702, -89.221]} // Coordenadas de ejemplo: San Salvador
+              zoom={13}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker
+                position={[13.702, -89.221]} // Coordenadas de ejemplo
+                icon={customIcon}
+              >
+                <Popup>
+                  <b>Sucursal San Benito</b>
+                  <br />
+                  Calle la Reforma #143.
+                </Popup>
+              </Marker>
+            </MapContainer>
           </div>
         </div>
       </div>

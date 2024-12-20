@@ -8,8 +8,8 @@ export function Contact() {
           </h2>
           <p className="text-gray-400">
             {" "}
-            Don't miss out on our great offers & Receive deals from all our top
-            restaurants via e-mail.{" "}
+            Don&apos;t miss out on our great offers & Receive deals from all our
+            top restaurants via e-mail.{" "}
           </p>
           <form className="max-w-2xl mx-auto space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

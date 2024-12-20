@@ -101,5 +101,41 @@ body {
   background: rgb(var(--background-rgb));
 }
 
+/* animacion basica */
+.text__teclado {
+  padding: 10px 0;
+  display: block;
+  background-color: white;
+  width: fit-content; /* Asegura que el contenedor ajuste su tamaño al contenido */
+  margin: 0 auto; /* Centra el contenedor */
+}
+
+.text__teclado-span {
+  display: inline-block;
+  font-size: 2rem; /* Asegura que el tamaño del texto sea igual a 'Un nuevo sabor esta en' */
+  color: #000;
+  font-weight: bold;
+  white-space: nowrap;
+  border-right: 4px solid;
+  animation: typing 2s steps(30), blink 0.5s infinite step-end alternate;
+  overflow: hidden; /* Oculta cualquier desbordamiento de texto */
+  max-width: 100%; /* Evita que el texto se estire más allá del límite */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%; /* El ancho máximo será el ancho del contenido */
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
 .cosa {
 }
