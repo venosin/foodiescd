@@ -17,10 +17,10 @@ export function About() {
             />
             {/* Texto completamente en la esquina inferior derecha */}
             <div className="absolute text-3xl lg:text-5xl font-druk font-bold text-white px-6 pt-15 bottom-6 left-20">
-              <h2 className="bottom-6 left-20 ">
+              <h2 className="bottom-6 left-20 animate-folding">
                 LA COMIDA ES <br />
               </h2>
-              <span className=" truncate inline-block text-yellow-400">
+              <span className="truncate inline-block text-yellow-400 animate-folding delay-200">
                 NUESTRO ARTE
               </span>
             </div>

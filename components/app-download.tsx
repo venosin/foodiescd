@@ -14,10 +14,10 @@ export function AppDownload() {
             />
           </div>
           <div className="space-y-8">
-            <h2 className="text-4xl font-druk font-bold">
+            <h2 className="text-4xl font-druk font-bold ">
               Obten más beneficios
               <br />
-              <span className="inline-block bg-yellow-400 px-2">
+              <span className="inline-block bg-yellow-400 px-2 animate-slide">
                 Descarga nuestra App
               </span>
             </h2>
