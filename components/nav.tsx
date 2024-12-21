@@ -24,7 +24,7 @@ export function Nav() {
           <div className="hidden md:flex space-x-8 ml-16">
             <Link
               href="#about"
-              className={` font-syneBold ${
+              className={`nav-link font-syneBold ${
                 pathname === "/menu" ? "text-white" : ""
               }`}
             >
@@ -32,7 +32,7 @@ export function Nav() {
             </Link>
             <Link
               href="#encuentranos"
-              className={`font-syneBold ${
+              className={`nav-link font-syneBold ${
                 pathname === "/menu" ? "text-white" : ""
               }`}
             >
@@ -40,7 +40,7 @@ export function Nav() {
             </Link>
             <Link
               href="/menu"
-              className={`font-syneBold ${
+              className={`nav-link font-syneBold ${
                 pathname === "/menu" ? "text-white" : ""
               }`}
             >
@@ -48,7 +48,7 @@ export function Nav() {
             </Link>
             <Link
               href="#contacto"
-              className={`font-syneBold ${
+              className={`nav-link font-syneBold ${
                 pathname === "/menu" ? "text-white" : ""
               }`}
             >

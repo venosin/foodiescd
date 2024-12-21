@@ -137,5 +137,33 @@ body {
   }
 }
 
+/* Estilo para Hover */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ffd600; /* Color del subrayado */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+  transform: translateX(0);
+}
+
+.nav-link:hover {
+  color: #ffd600; /* Cambia el color del texto al hacer hover */
+}
+
 .cosa {
 }
