@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import { MenuItem } from '@/types/menu'
+import Image from "next/image";
+import { MenuItem } from "@/types/menu";
 
 interface MenuItemCardProps {
-  item: MenuItem
+  item: MenuItem;
 }
 
 export function MenuItemCard({ item }: MenuItemCardProps) {
@@ -18,13 +18,14 @@ export function MenuItemCard({ item }: MenuItemCardProps) {
       </div>
       <div className="p-4">
         <h3 className="text-xl font-bold">{item.title}</h3>
-        <p className="text-gray-600 text-sm mt-1 line-clamp-2">{item.description}</p>
+        <p className="text-gray-600 text-sm mt-1 line-clamp-2">
+          {item.description}
+        </p>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-sm text-gray-500">{item.category}</span>
           <span className="text-lg font-bold">${item.price.toFixed(2)}</span>
         </div>
       </div>
     </div>
-  )
+  );
 }
-

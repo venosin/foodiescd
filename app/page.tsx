@@ -1,4 +1,3 @@
-"use-client";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Location } from "@/components/location";

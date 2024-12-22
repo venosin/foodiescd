@@ -1,34 +1,58 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { MenuItem } from '@/types/menu'
-import { MenuItemCard } from './menu-item-card'
-import { MenuFilters } from './menu-filters'
+import { useEffect, useState } from "react";
+import { MenuItem } from "@/types/menu";
+import { MenuItemCard } from "./menu-item-card";
+import { MenuFilters } from "./menu-filters";
+import { data } from "autoprefixer";
 
 interface MenuGridProps {
-  items: MenuItem[]
+  items: MenuItem[];
 }
 
 export function MenuGrid({ items }: MenuGridProps) {
-  const [filteredItems, setFilteredItems] = useState(items)
-  const categories =['Todos', 'Las tradicionales', 'Recomendaciones', 'Para compartir']
+  const [filteredItems, setFilteredItems] = useState(items);
+  const categories = [
+    "Todos",
+    "Las tradicionales",
+    "Recomendaciones",
+    "Para compartir",
+  ];
 
   const handleSearch = (term: string) => {
-    const filtered = items.filter((item) =>
-      item.title.toLowerCase().includes(term.toLowerCase()) ||
-      item.description.toLowerCase().includes(term.toLowerCase())
-    )
-    setFilteredItems(filtered)
-  }
+    const filtered = items.filter(
+      (item) =>
+        item.title.toLowerCase().includes(term.toLowerCase()) ||
+        item.description.toLowerCase().includes(term.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
 
   const handleFilter = (category: string) => {
-    if (category === 'Todos') {
-      setFilteredItems(items)
+    if (category === "Todos") {
+      setFilteredItems(items);
     } else {
-      const filtered = items.filter((item) => item.category === category)
-      setFilteredItems(filtered)
+      const filtered = items.filter((item) => item.category === category);
+      setFilteredItems(filtered);
     }
-  }
+  };
+   
+  fetch('https://api.foodies.elaniin.dev/dishes')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    console.log("", data.title);
+    // Aquí puedes manipular los datos recibidos
+  })
+  .catch(error => {
+    console.error('Hubo un problema con la solicitud Fetch:', error);
+  });
+
 
   return (
     <div>
@@ -45,6 +69,6 @@ export function MenuGrid({ items }: MenuGridProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
+ 
