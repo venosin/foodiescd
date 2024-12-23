@@ -50,6 +50,8 @@ export function MenuFilters({ onSearch, onFilter, categories }: MenuFiltersProps
 
 // import { useState } from 'react'
 
+
+
 // interface MenuFiltersProps {
 //   onSearch: (term: string) => void
 //   onFilter: (category: string) => void
@@ -58,6 +60,7 @@ export function MenuFilters({ onSearch, onFilter, categories }: MenuFiltersProps
 
 // export function MenuFilters({ onSearch, onFilter, categories }: MenuFiltersProps) {
 //   const [activeCategory, setActiveCategory] = useState('Todos')
+
 
 //   return (
 //     <div className="bg-gray-100 py-4">
@@ -92,6 +95,7 @@ export function MenuFilters({ onSearch, onFilter, categories }: MenuFiltersProps
 //         </div>
 //       </div>
 //     </div>
+    
 //   )
 // }
 
