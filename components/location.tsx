@@ -41,6 +41,14 @@ interface Branch {
   postalCode?: string;
 }
 
+// Coordenadas manuales para sucursales faltantes
+const fallbackCoordinates: Record<string, [number, number]> = {
+  "Sucursal Calle Mirador": [13.709136733393322, -89.24101427976359],
+  "Sucursal Escalón": [13.709637455506524, -89.2426835544755],
+  "Sucursal Multiplaza": [13.679451559093048, -89.24899081561078],
+  "Sucursal Metrosur": [13.705190467308418, -89.21466663558182],
+};
+
 // Componente para mover el mapa dinámicamente
 function MapMover({ coordinates }: { coordinates: [number, number] }) {
   const map = useMap();
@@ -57,7 +65,7 @@ export function Location() {
   ]);
   const [branches, setBranches] = useState<Branch[]>([]);
 
-  // Fetch datos desde la API
+  // Fetch datos desde la API y completa con las coordenadas manuales
   useEffect(() => {
     const fetchBranches = async () => {
       try {
@@ -69,21 +77,22 @@ export function Location() {
         }
         const data = await response.json();
         console.log("Datos obtenidos de la API:", data); // Verificar respuesta
-        const apiBranches: Branch[] = data.data.map(
-          (location: ApiLocation) => ({
+        const apiBranches: Branch[] = data.data.map((location: ApiLocation) => {
+          const coordinates =
+            location.latitude && location.longitude
+              ? [location.latitude, location.longitude]
+              : fallbackCoordinates[location.title] || [13.678, -89.254]; // Coordenadas predeterminadas
+          return {
             name: location.title,
             description: location.description,
             url: location.url,
-            coordinates: [
-              location.latitude || 13.678, // Valor predeterminado si falta
-              location.longitude || -89.254,
-            ],
+            coordinates: coordinates as [number, number],
             type: location.type === "takeout" ? "Para Llevar" : "Domicilio",
             city: location.city,
             department: location.department,
             postalCode: location.postalCode,
-          })
-        );
+          };
+        });
         setBranches(apiBranches);
       } catch (error) {
         console.error("Error al obtener las sucursales:", error);
@@ -111,7 +120,7 @@ export function Location() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Filtros y listado de sucursales */}
-          <div className="space-y-6">
+          <div className="space-y-6 overflow-y-auto max-h-[600px] pr-4">
             <input
               type="text"
               className="w-full p-3 border rounded-lg"
@@ -154,7 +163,7 @@ export function Location() {
                 <div
                   key={index}
                   className={`bg-white p-6 rounded-lg shadow-sm ${
-                    hoveredBranch === branch.name ? "ring-2 ring-black" : ""
+                    hoveredBranch === branch.name ? "ring-2 ring-blue-500" : ""
                   }`}
                   onMouseEnter={() => {
                     setHoveredBranch(branch.name);
@@ -171,19 +180,6 @@ export function Location() {
                     Departamento: {branch.department || "No disponible"}
                     <br />
                     Código Postal: {branch.postalCode || "No disponible"}
-                    <br />
-                    <a
-                      href={branch.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 underline"
-                    >
-                      Ver en mapa
-                    </a>
-                    <br />
-                    <span className="font-bold text-blue-500">
-                      {branch.type}
-                    </span>
                   </p>
                 </div>
               ))}

@@ -1,10 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Nav() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  // Función para manejar la navegación a secciones
+  const handleSectionClick = (href: string) => {
+    if (pathname !== "/") {
+      // Si no estamos en la página principal, redirigir primero y esperar un momento
+      router.push(`/${href}`);
+      setTimeout(() => {
+        const sectionId = href.startsWith("#") ? href.slice(1) : href;
+        document.getElementById(sectionId)?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }, 500); // Tiempo para permitir que la página se cargue
+    } else {
+      // Si estamos en la página principal, solo desplazarse
+      const sectionId = href.startsWith("#") ? href.slice(1) : href;
+      document.getElementById(sectionId)?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <nav className="fixed top-0 w-full z-50">
@@ -22,22 +43,23 @@ export function Nav() {
           </Link>
           {/* Enlaces de navegación */}
           <div className="hidden md:flex space-x-8 ml-16">
-            <Link
-              href="#about"
-              className={`nav-link font-syneBold ${
+            {/* Enlace con comportamiento ajustado */}
+            <a
+              onClick={() => handleSectionClick("#about")}
+              className={`nav-link cursor-pointer font-syneBold ${
                 pathname === "/menu" ? "text-white" : ""
               }`}
             >
               Acerca de
-            </Link>
-            <Link
-              href="#encuentranos"
-              className={`nav-link font-syneBold ${
+            </a>
+            <a
+              onClick={() => handleSectionClick("#encuentranos")}
+              className={`nav-link cursor-pointer font-syneBold ${
                 pathname === "/menu" ? "text-white" : ""
               }`}
             >
               Restaurantes
-            </Link>
+            </a>
             <Link
               href="/menu"
               className={`nav-link font-syneBold ${
@@ -46,14 +68,14 @@ export function Nav() {
             >
               Menú
             </Link>
-            <Link
-              href="#contacto"
-              className={`nav-link font-syneBold ${
+            <a
+              onClick={() => handleSectionClick("#contacto")}
+              className={`nav-link cursor-pointer font-syneBold ${
                 pathname === "/menu" ? "text-white" : ""
               }`}
             >
               Contáctanos
-            </Link>
+            </a>
           </div>
         </div>
       </div>
