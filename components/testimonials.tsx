@@ -7,7 +7,7 @@ export function Testimonials() {
   const totalSlides = 6;
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden " id="testimonio">
       <div className="absolute left-0 bottom-0 w-64 h-64 bg-red-500 rounded-full opacity-20 transform -translate-x-1/2 translate-y-1/2" />
       <div className="absolute right-0 bottom-0 w-96 h-96 bg-red-500 rounded-full opacity-20 transform translate-x-1/2 translate-y-1/2" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">

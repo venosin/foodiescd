@@ -1,4 +1,3 @@
-import { Syne_Mono } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 /** @type {import('tailwindcss').Config} */
@@ -17,7 +16,7 @@ export default {
         slide: "slide 2s ease-in-out",
         scale: "scale 1.5s ease-out",
         turning: "turning 2s ease-in-out",
-        burning: "burning 2s ease-in-out", // Agrega la animación perspective
+        burning: "burning 2s ease-in-out", 
       },
       keyframes: {
         folding: {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -7,19 +8,24 @@ export function Nav() {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Función para manejar la navegación a secciones
+  const [isOpen, setIsOpen] = useState(false); // Control del menú
+  const [isInContact, setIsInContact] = useState(false); // Estado para detectar la sección contacto
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   const handleSectionClick = (href: string) => {
+    setIsOpen(false); // Cerrar el menú en dispositivos móviles al hacer clic
     if (pathname !== "/") {
-      // Si no estamos en la página principal, redirigir primero y esperar un momento
       router.push(`/${href}`);
       setTimeout(() => {
         const sectionId = href.startsWith("#") ? href.slice(1) : href;
         document.getElementById(sectionId)?.scrollIntoView({
           behavior: "smooth",
         });
-      }, 500); // Tiempo para permitir que la página se cargue
+      }, 500);
     } else {
-      // Si estamos en la página principal, solo desplazarse
       const sectionId = href.startsWith("#") ? href.slice(1) : href;
       document.getElementById(sectionId)?.scrollIntoView({
         behavior: "smooth",
@@ -27,57 +33,113 @@ export function Nav() {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const contactSection = document.getElementById("contacto");
+      if (contactSection) {
+        const rect = contactSection.getBoundingClientRect();
+        // Verificar si la sección #contacto está visible
+        setIsInContact(rect.top < window.innerHeight && rect.bottom >= 0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const isNavWhite = isInContact || pathname === "/menu";
+
   return (
-    <nav className="fixed top-0 w-full z-50">
-      {/* Contenedor principal */}
+    <nav
+      className={`fixed top-0 w-full z-50 ${
+        isNavWhite ? "text-white" : "text-black"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-16">
-          {/* Logo */}
-          <Link
-            href="/"
-            className={`font-druk font-bold text-xl ${
-              pathname === "/menu" ? "text-white" : ""
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center space-x-10">
+            <Link
+              href="/"
+              className={`font-druk font-bold text-xl ${
+                isNavWhite ? "text-white" : "text-black"
+              }`}
+            >
+              Foodies
+            </Link>
+            <div className="hidden md:flex space-x-6">
+              <a
+                onClick={() => handleSectionClick("#about")}
+                className={`nav-link cursor-pointer font-syneBold ${
+                  isNavWhite ? "text-white" : "text-black"
+                }`}
+              >
+                Acerca de
+              </a>
+              <a
+                onClick={() => handleSectionClick("#encuentranos")}
+                className={`nav-link cursor-pointer font-syneBold ${
+                  isNavWhite ? "text-white" : "text-black"
+                }`}
+              >
+                Restaurantes
+              </a>
+              <Link
+                href="/menu"
+                className={`nav-link font-syneBold ${
+                  isNavWhite ? "text-white" : "text-black"
+                }`}
+              >
+                Menú
+              </Link>
+              <a
+                onClick={() => handleSectionClick("#contacto")}
+                className={`nav-link cursor-pointer font-syneBold ${
+                  isNavWhite ? "text-white" : "text-black"
+                }`}
+              >
+                Contáctanos
+              </a>
+            </div>
+          </div>
+          <button
+            onClick={toggleMenu}
+            className={`md:hidden block ${
+              isNavWhite ? "text-white" : "text-gray-800"
             }`}
           >
-            Foodies
-          </Link>
-          {/* Enlaces de navegación */}
-          <div className="hidden md:flex space-x-8 ml-16">
-            {/* Enlace con comportamiento ajustado */}
+            {isOpen ? "✖" : "☰"}
+          </button>
+        </div>
+        {isOpen && (
+          <div className="md:hidden bg-white rounded-lg shadow-lg mt-2">
             <a
               onClick={() => handleSectionClick("#about")}
-              className={`nav-link cursor-pointer font-syneBold ${
-                pathname === "/menu" ? "text-white" : ""
-              }`}
+              className="block px-4 py-2 text-gray-600 hover:text-gray-900"
             >
               Acerca de
             </a>
             <a
               onClick={() => handleSectionClick("#encuentranos")}
-              className={`nav-link cursor-pointer font-syneBold ${
-                pathname === "/menu" ? "text-white" : ""
-              }`}
+              className="block px-4 py-2 text-gray-600 hover:text-gray-900"
             >
               Restaurantes
             </a>
             <Link
               href="/menu"
-              className={`nav-link font-syneBold ${
-                pathname === "/menu" ? "text-white" : ""
-              }`}
+              className="block px-4 py-2 text-gray-600 hover:text-gray-900"
             >
               Menú
             </Link>
             <a
               onClick={() => handleSectionClick("#contacto")}
-              className={`nav-link cursor-pointer font-syneBold ${
-                pathname === "/menu" ? "text-white" : ""
-              }`}
+              className="block px-4 py-2 text-gray-600 hover:text-gray-900"
             >
               Contáctanos
             </a>
           </div>
-        </div>
+        )}
       </div>
     </nav>
   );

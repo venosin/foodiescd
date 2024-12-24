@@ -10,13 +10,12 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-    {/* Imagen fija en la esquina superior derecha */}
-    <Image
-          src={Mancha}
-          alt="imagendeBurguer"
-          className="absolute top-0 right-0 h-full md:h-auto"
-        />
-        {/* Contenido principal */}
+      {/* Imagen fija en la esquina superior derecha */}
+      <Image
+        src={Mancha}
+        alt="imagendeBurguer"
+        className="absolute top-0 right-0 w-full h-auto md:w-auto md:h-auto"
+      />
       <main>
         <Hero />
         <About />

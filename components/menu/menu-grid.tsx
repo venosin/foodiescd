@@ -7,10 +7,8 @@ import { MenuItemCard } from "./menu-item-card";
 
 interface MenuGridProps {
   items: MenuItem[];
-  categories: string[]; // Pasar categorías dinámicas.
+  categories: string[]; 
 }
-
-
 
 export function MenuGrid({ items, categories }: MenuGridProps) {
   const [filteredItems, setFilteredItems] = useState(items);
@@ -44,7 +42,7 @@ export function MenuGrid({ items, categories }: MenuGridProps) {
         {filteredItems.length === 0 ? (
           <p className="text-center text-gray-500">No se encontraron platillos.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             {filteredItems.map((item) => (
               <MenuItemCard key={item.id} item={item} />
             ))}
@@ -53,5 +51,4 @@ export function MenuGrid({ items, categories }: MenuGridProps) {
       </div>
     </div>
   );
-}  
-
+}

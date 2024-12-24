@@ -5,7 +5,7 @@ export function AppDownload() {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative h-[600px]">
+          <div className="relative h-[500px] sm:h-[700px] lg:h-[900px]">
             <Image
               src="/telefono.png"
               alt="App Foodies"
@@ -14,7 +14,7 @@ export function AppDownload() {
             />
           </div>
           <div className="space-y-8">
-            <h2 className="text-4xl font-druk font-bold ">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-druk font-bold">
               Obten más beneficios
               <br />
               <span className="inline-block bg-yellow-400 px-2 animate-slide">
@@ -22,50 +22,50 @@ export function AppDownload() {
               </span>
             </h2>
             <div className="space-y-6">
-              <div className="flex items-start space-x-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
                 <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center text-2xl">
                   01
                 </div>
                 <div>
-                  <h3 className="font-bold font-syneBold text-xl">
+                  <h3 className="font-bold font-syneBold text-lg sm:text-xl">
                     Solicita rápido
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm sm:text-base">
                     Curabitur in eleifend turpis, id vehicula odio. Donec
                     pulvinar tellus eget magna aliquet ultricies.
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
                 <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center text-2xl">
                   02
                 </div>
                 <div>
-                  <h3 className="font-bold font-syneBold text-xl">
+                  <h3 className="font-bold font-syneBold text-lg sm:text-xl">
                     Fácil de Usar
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm sm:text-base">
                     Orci varius natoque penatibus et magnis dis parturient
                     montes, nascetur ridiculus mus.
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
                 <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center text-2xl">
                   03
                 </div>
                 <div>
-                  <h3 className="font-bold font-syneBold text-xl">
+                  <h3 className="font-bold font-syneBold text-lg sm:text-xl">
                     Promociones especiales
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm sm:text-base">
                     Curabitur in eleifend turpis, id vehicula odio. Donec
                     pulvinar tellus eget magna aliquet ultricies.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a href="#" className="block">
                 <Image
                   src="/appstore.png"

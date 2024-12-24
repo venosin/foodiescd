@@ -76,7 +76,6 @@ export function Location() {
           throw new Error("Error al obtener datos de la API");
         }
         const data = await response.json();
-        console.log("Datos obtenidos de la API:", data); // Verificar respuesta
         const apiBranches: Branch[] = data.data.map((location: ApiLocation) => {
           const coordinates =
             location.latitude && location.longitude
@@ -113,14 +112,13 @@ export function Location() {
   );
 
   return (
-    <section className="py-24 bg-gray-50" id="encuentranos">
+    <section className="py-16 bg-gray-50" id="encuentranos">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-druk text-4xl font-bold text-left mb-12 animate-scale">
+        <h2 className="font-druk text-3xl sm:text-4xl lg:text-5xl font-bold text-left mb-12">
           Estamos para ti
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Filtros y listado de sucursales */}
-          <div className="space-y-6 overflow-y-auto max-h-[600px] pr-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="space-y-6 overflow-y-auto max-h-[500px] pr-4">
             <input
               type="text"
               className="w-full p-3 border rounded-lg"
@@ -128,7 +126,7 @@ export function Location() {
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
             />
-            <div className="flex space-x-4">
+            <div className="flex flex-wrap gap-4">
               <button
                 className={`p-3 rounded-lg ${
                   serviceFilter === "Para Llevar"
@@ -172,7 +170,7 @@ export function Location() {
                   onMouseLeave={() => setHoveredBranch(null)}
                 >
                   <h3 className="font-bold">{branch.name}</h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm lg:text-base">
                     {branch.description}
                     <br />
                     Ciudad: {branch.city || "No disponible"}
@@ -186,8 +184,7 @@ export function Location() {
             </div>
           </div>
 
-          {/* Mapa interactivo */}
-          <div className="relative h-[600px] rounded-lg overflow-hidden">
+          <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-lg overflow-hidden">
             <MapContainer
               style={{ height: "100%", width: "100%" }}
               center={mapCenter}
