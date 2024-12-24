@@ -7,12 +7,11 @@ import { AppDownload } from "@/components/app-download";
 import Mancha from "@/public/mancha.svg";
 import Image from "next/image";
 import Footer from "@/components/footer";
-import { Suspense } from "react";
 
 export default function Home() {
   return (
     <>
-    <Suspense>
+     
       <Image
         src={Mancha}
         alt="imagendeBurguer"
@@ -27,7 +26,6 @@ export default function Home() {
         <AppDownload />
       </main>
       <Footer />
-    </Suspense>
     </>
   );
 }
