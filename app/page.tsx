@@ -11,7 +11,8 @@ import Footer from "@/components/footer";
 export default function Home() {
   return (
     <>
-     
+    
+    
       <Image
         src={Mancha}
         alt="imagendeBurguer"
