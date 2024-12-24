@@ -10,7 +10,7 @@ export function About() {
             <Image
               src="/Group22.png"
               alt="Nuestro equipo trabajando"
-              layout="responsive"
+              // layout="responsive"
               width={1200}
               height={800}
               className="object-cover object-center"

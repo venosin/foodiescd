@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { Nav } from "@/components/nav";
 
 
 // Configuración de la fuente Inter
@@ -25,8 +24,6 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.className}>
       <body className="b-0 p-0 m-0 min-h-screen relative">
-        
-        <Nav/>
         {children}
       </body>
     </html>

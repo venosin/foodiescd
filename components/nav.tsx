@@ -7,7 +7,6 @@ import { usePathname, useRouter } from "next/navigation";
 export function Nav() {
   const pathname = usePathname();
   const router = useRouter();
-
   const [isOpen, setIsOpen] = useState(false); // Control del menú
   const [isInContact, setIsInContact] = useState(false); // Estado para detectar la sección contacto
 
@@ -21,32 +20,39 @@ export function Nav() {
       router.push(`/${href}`);
       setTimeout(() => {
         const sectionId = href.startsWith("#") ? href.slice(1) : href;
-        document.getElementById(sectionId)?.scrollIntoView({
-          behavior: "smooth",
-        });
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
       }, 500);
     } else {
       const sectionId = href.startsWith("#") ? href.slice(1) : href;
-      document.getElementById(sectionId)?.scrollIntoView({
-        behavior: "smooth",
-      });
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
+      if (typeof window === 'undefined') return;
+      
       const contactSection = document.getElementById("contacto");
       if (contactSection) {
         const rect = contactSection.getBoundingClientRect();
-        // Verificar si la sección #contacto está visible
         setIsInContact(rect.top < window.innerHeight && rect.bottom >= 0);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const isNavWhite = isInContact || pathname === "/menu";

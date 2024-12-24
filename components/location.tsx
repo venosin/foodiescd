@@ -5,13 +5,13 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// Configuración del ícono de Leaflet
-import MarkerIcon from "leaflet/dist/images/marker-icon.png";
-import MarkerShadow from "leaflet/dist/images/marker-shadow.png";
+// // Configuración del ícono de Leaflet
+// import MarkerIcon from "leaflet/dist/images/marker-icon.png";
+// import MarkerShadow from "leaflet/dist/images/marker-shadow.png";
 
 const customIcon = new L.Icon({
-  iconUrl: MarkerIcon as unknown as string,
-  shadowUrl: MarkerShadow as unknown as string,
+  iconUrl: "/leaflet/marker-icon.png",
+  shadowUrl: "/leaflet/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12.5, 41],
 });

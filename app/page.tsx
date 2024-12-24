@@ -1,3 +1,5 @@
+"use client";
+
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Location } from "@/components/location";
@@ -7,11 +9,17 @@ import { AppDownload } from "@/components/app-download";
 import Mancha from "@/public/mancha.svg";
 import Image from "next/image";
 import Footer from "@/components/footer";
+import { Nav } from "@/components/nav";
+import dynamic from "next/dynamic";
 
-export default function Home() {
+const DynamicLocation = dynamic(() => import("@/components/location").then(mod => mod.Location), {
+  ssr: false,
+});
+
+  export default function Home() {
   return (
     <>
-     
+      <Nav />
       <Image
         src={Mancha}
         alt="imagendeBurguer"
@@ -19,8 +27,11 @@ export default function Home() {
       />
       <main>
         <Hero />
-        <About />
-        <Location />
+        <About />+
+
+        <DynamicLocation />
+        {/* <Location /> */}
+
         <Testimonials />
         <Contact />
         <AppDownload />

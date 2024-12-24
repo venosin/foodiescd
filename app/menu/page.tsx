@@ -5,6 +5,8 @@ import { MenuHeader } from "@/components/menu/menu-header";
 import { MenuGrid } from "@/components/menu/menu-grid";
 import { MenuItem, Category } from "@/types/menu";
 import Footer from "@/components/footer";  
+import { Nav } from "@/components/nav";
+
 
 export default function MenuPage() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -49,10 +51,13 @@ export default function MenuPage() {
   }
 
   return (
-    <main>
-      <MenuHeader />
-      <MenuGrid items={menuItems} categories={categories} />
-      <Footer /> 
-    </main>
+    <>
+      <Nav />
+      <main>
+        <MenuHeader />
+        <MenuGrid items={menuItems} categories={categories} />
+        <Footer /> 
+      </main>
+    </>
   );
 }
