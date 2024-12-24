@@ -17,28 +17,30 @@ export function Nav() {
 
   const handleSectionClick = (href: string) => {
     setIsOpen(false); // Cerrar el menú en dispositivos móviles al hacer clic
-    if (pathname !== "/") {
-      router.push(`/${href}`);
-      setTimeout(() => {
-        const sectionId = href.startsWith("#") ? href.slice(1) : href;
+    if (typeof window !== "undefined") {
+      const sectionId = href.startsWith("#") ? href.slice(1) : href;
+      if (pathname !== "/") {
+        router.push(`/${href}`);
+        setTimeout(() => {
+          document.getElementById(sectionId)?.scrollIntoView({
+            behavior: "smooth",
+          });
+        }, 500);
+      } else {
         document.getElementById(sectionId)?.scrollIntoView({
           behavior: "smooth",
         });
-      }, 500);
-    } else {
-      const sectionId = href.startsWith("#") ? href.slice(1) : href;
-      document.getElementById(sectionId)?.scrollIntoView({
-        behavior: "smooth",
-      });
+      }
     }
   };
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const handleScroll = () => {
       const contactSection = document.getElementById("contacto");
       if (contactSection) {
         const rect = contactSection.getBoundingClientRect();
-        // Verificar si la sección #contacto está visible
         setIsInContact(rect.top < window.innerHeight && rect.bottom >= 0);
       }
     };
