@@ -53,3 +53,6 @@ Email: daniel.palacios@elaniin.com
 o danilsboy09@gmail.com
 
 GitHub: venosin
+
+
+https://img.shields.io/github/commit-activity/t/venosin/foodiescd
