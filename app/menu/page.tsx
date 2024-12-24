@@ -25,12 +25,12 @@ export default function MenuPage() {
         const categoriesData = await categoriesResponse.json();
   
         // Procesa las categorías
-        const validMenuItems = dishesData.data.map((dish) => ({
+        const validMenuItems = dishesData.data.map((dish:any) => ({
           ...dish,
           category: dish.categories?.[0]?.name || "Sin categoría", // Extrae la primera categoría
         }));
   
-        const validCategories = ["Todos", ...categoriesData.data.map((cat) => cat.name)];
+        const validCategories = ["Todos", ...categoriesData.data.map((cat:any) => cat.name)];
   
         setMenuItems(validMenuItems);
         setCategories(validCategories);

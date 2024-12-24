@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import Image from "next/image";
 
 export function Contact() {
@@ -9,18 +9,72 @@ export function Contact() {
     message: '',
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    name: null,
+    email: null,
+    message: null,
+  });
   const [isSuccess, setIsSuccess] = useState(false); // Estado para manejar la vista de éxito
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: '' }); // Limpiar errores al escribir
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   // Actualizamos el estado dinámicamente basado en el atributo name
+  //   new Promise((resolve) => {
+  //     setFormData((prevData) => {
+  //       const updatedData = { ...prevData, [name]: value };
+  //       resolve(updatedData);
+  //       return updatedData;
+  //     });
+  //   }).catch((updatedData) => {
+  //     setErrors({ ...errors, [name]: value });
+  //     console.log("formData actualizado:", updatedData);
+  //   });
+  // };
+  const validateField = (name: string, value: string) => {
+    // Validaciones específicas para cada campo
+    if (!value.trim()) {
+      return `${name} no puede estar vacío.`;
+    }
+    if (name === "name" && value.length < 3) {
+      return "El nombre debe tener al menos 3 caracteres.";
+    }
+    if (name === "description" && value.length < 10) {
+      return "La descripción debe tener al menos 10 caracteres.";
+    }
+    return ""; // Sin errores
   };
 
-  const handleSubmit = async (e) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+
+    // Actualiza el estado del formulario
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    // Validar el campo
+    const errorMessage = validateField(name, value);
+
+    // Actualiza los errores
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMessage,
+    }));
+  };
+  
+  // const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, formData[name]:value });
+  //   setErrors({ ...errors, [name]: '' }); // Limpiar errores al escribir
+  // };
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrors({});
+    if(Object.values(formData).includes("")){
+      console.log("existe un campo vacio")
+    }
     const url = 'https://api.foodies.elaniin.dev/forms/contact/submissions';
     const options = {
       method: 'POST',
@@ -92,7 +146,7 @@ export function Contact() {
                   placeholder="Nombre y Apellido"
                   value={formData.name}
                   onChange={handleChange}
-                  required
+                  // required
                   className={`w-full px-4 py-3 bg-transparent border ${
                     errors.name ? 'border-red-500' : 'border-gray-700'
                   } rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-yellow-400`}
@@ -106,7 +160,7 @@ export function Contact() {
                   placeholder="Correo electrónico"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                  // required
                   className={`w-full px-4 py-3 bg-transparent border ${
                     errors.email ? 'border-red-500' : 'border-gray-700'
                   } rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-yellow-400`}
@@ -115,14 +169,15 @@ export function Contact() {
               </div>
             </div>
             <div>
-              <textarea
+              <textarea 
+              // required
                 name="message"
                 placeholder="Mensaje (opcional)"
                 rows={4}
                 value={formData.message}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 bg-transparent border ${
-                  errors.message ? 'border-red-500' : 'border-gray-700'
+                  formData.message ? 'border-red-500' : 'border-gray-700'
                 } rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-yellow-400`}
               />
               {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
