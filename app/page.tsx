@@ -6,11 +6,12 @@ import { Contact } from "@/components/contact";
 import { AppDownload } from "@/components/app-download";
 import Mancha from "@/public/mancha.svg";
 import Image from "next/image";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
     <>
-      {/* Imagen fija en la esquina superior derecha */}
+     
       <Image
         src={Mancha}
         alt="imagendeBurguer"
@@ -24,6 +25,7 @@ export default function Home() {
         <Contact />
         <AppDownload />
       </main>
+      <Footer />
     </>
   );
 }

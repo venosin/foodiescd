@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { MenuHeader } from "@/components/menu/menu-header";
 import { MenuGrid } from "@/components/menu/menu-grid";
 import { MenuItem, Category } from "@/types/menu";
+import Footer from "@/components/footer";  
 
 export default function MenuPage() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -43,7 +44,6 @@ export default function MenuPage() {
     fetchMenuData();
   }, []);  
 
-  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -52,7 +52,7 @@ export default function MenuPage() {
     <main>
       <MenuHeader />
       <MenuGrid items={menuItems} categories={categories} />
+      <Footer /> 
     </main>
   );
 }
-
