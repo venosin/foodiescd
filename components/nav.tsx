@@ -15,24 +15,24 @@ export function Nav() {
     setIsOpen(!isOpen);
   };
 
-  const handleSectionClick = (href: string) => {
-    setIsOpen(false); // Cerrar el menú en dispositivos móviles al hacer clic
-    if (typeof window !== "undefined") {
-      const sectionId = href.startsWith("#") ? href.slice(1) : href;
-      if (pathname !== "/") {
-        router.push(`/${href}`);
-        setTimeout(() => {
-          document.getElementById(sectionId)?.scrollIntoView({
-            behavior: "smooth",
-          });
-        }, 500);
-      } else {
-        document.getElementById(sectionId)?.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
-    }
-  };
+  // const handleSectionClick = (href: string) => {
+  //   setIsOpen(false); // Cerrar el menú en dispositivos móviles al hacer clic
+  //   if (typeof window !== "undefined") {
+  //     const sectionId = href.startsWith("#") ? href.slice(1) : href;
+  //     if (pathname !== "/") {
+  //       router.push(`/${href}`);
+  //       setTimeout(() => {
+  //         document.getElementById(sectionId)?.scrollIntoView({
+  //           behavior: "smooth",
+  //         });
+  //       }, 500);
+  //     } else {
+  //       document.getElementById(sectionId)?.scrollIntoView({
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -72,7 +72,8 @@ export function Nav() {
             </Link>
             <div className="hidden md:flex space-x-6">
               <a
-                onClick={() => handleSectionClick("#about")}
+              href="#about"
+                // onClick={() => handleSectionClick("#about")}
                 className={`nav-link cursor-pointer font-syneBold ${
                   isNavWhite ? "text-white" : "text-black"
                 }`}
@@ -80,7 +81,8 @@ export function Nav() {
                 Acerca de
               </a>
               <a
-                onClick={() => handleSectionClick("#encuentranos")}
+              href="#encuentranos"
+                // onClick={() => handleSectionClick("#encuentranos")}
                 className={`nav-link cursor-pointer font-syneBold ${
                   isNavWhite ? "text-white" : "text-black"
                 }`}
@@ -96,7 +98,8 @@ export function Nav() {
                 Menú
               </Link>
               <a
-                onClick={() => handleSectionClick("#contacto")}
+              href="#contacto"
+                // onClick={() => handleSectionClick("#contacto")}
                 className={`nav-link cursor-pointer font-syneBold ${
                   isNavWhite ? "text-white" : "text-black"
                 }`}
@@ -117,13 +120,15 @@ export function Nav() {
         {isOpen && (
           <div className="md:hidden bg-white rounded-lg shadow-lg mt-2">
             <a
-              onClick={() => handleSectionClick("#about")}
+            href="#about"
+              // onClick={() => handleSectionClick("#about")}
               className="block px-4 py-2 text-gray-600 hover:text-gray-900"
             >
               Acerca de
             </a>
             <a
-              onClick={() => handleSectionClick("#encuentranos")}
+            href="#encuentranos"
+              // onClick={() => handleSectionClick("#encuentranos")}
               className="block px-4 py-2 text-gray-600 hover:text-gray-900"
             >
               Restaurantes
@@ -135,7 +140,8 @@ export function Nav() {
               Menú
             </Link>
             <a
-              onClick={() => handleSectionClick("#contacto")}
+            href="#contacto"
+              // onClick={() => handleSectionClick("#contacto")}
               className="block px-4 py-2 text-gray-600 hover:text-gray-900"
             >
               Contáctanos
