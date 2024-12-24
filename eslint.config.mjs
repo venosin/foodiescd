@@ -10,7 +10,25 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends(
+    "eslint:recommended", // Reglas básicas recomendadas por ESLint
+    "plugin:@typescript-eslint/recommended", // Reglas específicas de TypeScript
+    "next/core-web-vitals" // Reglas de Next.js
+  ),
+  {
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+      ecmaVersion: 2020,
+      sourceType: "module",
+      project: "./tsconfig.json",
+    },
+    plugins: ["@typescript-eslint"],
+    rules: {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["warn"], // Ajusta según tus necesidades
+      "@typescript-eslint/no-explicit-any": "warn", // Advierte si usas `any`
+    },
+  },
 ];
 
 export default eslintConfig;
