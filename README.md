@@ -7,6 +7,7 @@ Foodies es una plataforma donde los usuarios pueden:
 Encuentra nuestros restaurantes, en el mapa interactivo, 
 puedes visualizar nuestro menu en su seccion. 
 
+agregue imagen de foodies 
 
 Tecnologías Utilizadas
 
